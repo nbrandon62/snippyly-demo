@@ -6,9 +6,6 @@ export default {
     ],
     theme: {
       extend: {},
-      colors: {
-        grapes: '463A3C',
-      },
     },
     plugins: [],
   }

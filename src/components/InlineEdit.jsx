@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import editIcon from '../assets/editIcon.svg';
 
-const InlineEdit = ({ value, setValue }) => {
+const InlineEdit = ({ value, setValue, handleLogout }) => {
   const [editingValue, setEditingValue] = useState(value);
   const inputElement = useRef();
 
@@ -40,6 +40,7 @@ const InlineEdit = ({ value, setValue }) => {
         <button className='mt-2' onClick={focusInput}>
           <img src={editIcon} alt='edit title icon' className='h-6 mx-4' />
         </button>
+        <button className='text-white' onClick={handleLogout}>Logout</button>
     </div>
   );
 };

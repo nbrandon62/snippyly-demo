@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+}
+
+snippyly-comment-tool {
+  --snippyly-comment-tool-icon-size: 4rem !important;
+}
+.action-btn-icon{
+  margin-top: 1rem;
+}
+
+.gjs-one-bg {
+  background-color: #111 !important;
+}
+.gjs-two-color {
+  z-index: 0;
+}
+
+.gjs-pn-btn svg {
+  color: white;
+  fill: none !important;
+  background-color: #141516;
+}
+.gjs-block__media {
+  color: white;
+}
+
+.gjs-pn-devices-c {
+  left: 11.5em;
+}
+
+.gjs-pn-options {
+  right: 45% !important;
+}
+
+.gjs-pn-views {
+  width: 300px !important;
+  font-family: LeagueSpartan;
+}
+
+.gjs-pn-views-container {
+  width: 300px !important;
+}
+
+.gjs-block-category.gjs-open .gjs-title {
+  background-color: #31353b;
+}
+
+.gjs-block {
+  background-color: #1f2124 !important;
+  border-radius: 8px;
+}
+
+.gjs-block-label {
+  font-family: LeagueSpartan !important;
+  color: white !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+}
+.gjs-block:hover {
+  color: #b5d2fd !important;
+}
+
+.gjs-blocks-cs {
+  font-family: LeagueSpartan;
+  background: #e6f0ff;
+}

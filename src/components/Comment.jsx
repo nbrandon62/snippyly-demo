@@ -4,7 +4,6 @@ const Comment = () => {
   return (
     <>
       <SnippylyComments />
-
       <div className='toolbar'>
         <SnippylyCommentTool />
       </div>

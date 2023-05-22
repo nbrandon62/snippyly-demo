@@ -9,6 +9,9 @@ body {
 .gjs-one-bg {
   background-color: #111 !important;
 }
+.gjs-two-color {
+  z-index: 0;
+}
 
 .gjs-pn-btn svg {
   color: white;

@@ -1,10 +1,9 @@
-import { SnippylyProvider } from '@snippyly/react';
+import { SnippylyCursor, SnippylyProvider } from '@snippyly/react';
 import { useState } from 'react';
-import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from './FirebaseConfig';
 import { Editor } from './components/Editor';
 import TopBar from './components/TopBar';
-import Comment from './components/Comment';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,30 +19,20 @@ function App() {
       userId: uid,
       name: displayName,
       email,
-      photoURL,
+      photoUrl: photoURL,
     };
     setUser(snippylyUser);
   };
 
-  const handleGoogleLogout = async () => {
-    try {
-      await signOut(auth);
-      alert('You have been logged out');
-      setUser(null);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <SnippylyProvider apiKey={apiKey}>
+      <SnippylyCursor avatarMode={true} />
       <TopBar
         handleLogin={handleSnippylyLogin}
-        handleLogout={handleGoogleLogout}
+        handleSetUser={setUser}
         user={user}
       />
       <Editor />
-      <Comment />
     </SnippylyProvider>
   );
 }

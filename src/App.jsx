@@ -1,4 +1,4 @@
-import { SnippylyProvider, useSnippylyClient } from '@snippyly/react';
+import { SnippylyProvider } from '@snippyly/react';
 import { useState } from 'react';
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from './FirebaseConfig';
@@ -7,25 +7,28 @@ import TopBar from './components/TopBar';
 import Comment from './components/Comment';
 
 function App() {
-  const provider = new GoogleAuthProvider();
-  const { client } = useSnippylyClient();
-  const apiKey = import.meta.env.VITE_SNIPPYLY_API_KEY;
   const [user, setUser] = useState(null);
 
+  const provider = new GoogleAuthProvider();
+  const apiKey = import.meta.env.VITE_SNIPPYLY_API_KEY;
 
   const handleSnippylyLogin = async () => {
     const credentials = await signInWithPopup(auth, provider);
     const { user } = credentials;
-    setUser(user);
     const { uid, displayName, email, photoURL } = user;
-    
-    console.log(uid, displayName, email, photoURL);
-    console.log('snippyly client', client);
+    const snippylyUser = {
+      userId: uid,
+      name: displayName,
+      email,
+      photoURL,
+    };
+    setUser(snippylyUser);
   };
 
-  const signOut = async () => {
+  const handleGoogleLogout = async () => {
     try {
       await signOut(auth);
+      alert('You have been logged out');
       setUser(null);
     } catch (err) {
       console.log(err);
@@ -34,13 +37,13 @@ function App() {
 
   return (
     <SnippylyProvider apiKey={apiKey}>
-      {/* <Comment />  */}
       <TopBar
         handleLogin={handleSnippylyLogin}
-        handleLogout={signOut}
+        handleLogout={handleGoogleLogout}
         user={user}
       />
       <Editor />
+      <Comment />
     </SnippylyProvider>
   );
 }

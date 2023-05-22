@@ -1,16 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSnippylyClient } from '@snippyly/react';
 import InlineEdit from './InlineEdit';
-import Presence from './Presence';
+import Comment from './Comment'; 
 
 const TopBar = ({ handleLogin, handleLogout, user }) => {
   const [currentTitle, setCurrentTitle] = useState('Untitled');
+  const { client } = useSnippylyClient();
+
+  useEffect(() => {
+    if (!user) {
+      return;
+    } else if (client && user) {
+      client.identify(user);
+      client.setDocumentId(location.href);
+      return
+    }
+  }, [client]);
+
 
   return (
     <div className='bg-[#111111] items-center '>
       <div className='h-16 flex justify-between items-center mx-9'>
         <div className='project-title'>
           {user ? (
-            <InlineEdit value={currentTitle} setValue={setCurrentTitle} handleLogout={handleLogout}/>
+            <InlineEdit
+              value={currentTitle}
+              setValue={setCurrentTitle}
+              handleLogout={handleLogout}
+            />
           ) : (
             <button
               onClick={handleLogin}
@@ -21,7 +38,7 @@ const TopBar = ({ handleLogin, handleLogout, user }) => {
           )}
         </div>
         <div className='presence-container'>
-          <Presence />
+          <Comment />
         </div>
       </div>
     </div>

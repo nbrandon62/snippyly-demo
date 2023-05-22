@@ -6,7 +6,6 @@ import InlineEdit from './InlineEdit';
 import Comment from './Comment';
 import Presence from './Presence';
 
-
 const TopBar = ({ handleLogin, handleSetUser, user }) => {
   const [currentTitle, setCurrentTitle] = useState('Untitled');
   const { client } = useSnippylyClient();
@@ -31,32 +30,45 @@ const TopBar = ({ handleLogin, handleSetUser, user }) => {
     }
   };
 
+  const formatFirstName = (user) => {
+    if (user) {
+      const firstName = user.name.split(' ')[0];
+      return firstName;
+    }
+  };
+
   return (
     <div className='bg-[#111111] items-center '>
-      <div className='h-16 flex justify-between items-center mx-9'>
-        <div className='project-title'>
-          {user ? (
-            <InlineEdit
-              value={currentTitle}
-              setValue={setCurrentTitle}
-              handleLogout={handleLogout}
-            />
-          ) : (
-            <button
-              onClick={handleLogin}
-              className='bg-white p-3 rounded font-bold'
-            >
-              Login With Google
-            </button>
-          )}
-        </div>
-        {user ? (
-          <div className='presence-container flex align-center'>
-            <Presence />
-            <Comment />
+      {user ? (
+        <>
+          <div className='mx-9 text-white font-bold text-xl'>
+            Hello, {formatFirstName(user)}
           </div>
-        ) : null}
-      </div>
+          <div className='mt-0 h-20 flex justify-between items-center mx-9'>
+            <div className='project-title'>
+              <InlineEdit
+                value={currentTitle}
+                user={user}
+                setValue={setCurrentTitle}
+                handleLogout={handleLogout}
+              />
+            </div>
+            <div className='presence-container flex items-center'>
+              <Presence />
+              <Comment />
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className='h-20 flex justify-between items-center mx-9'>
+          <button
+            onClick={handleLogin}
+            className='bg-white p-3 rounded font-bold'
+          >
+            Login With Google
+          </button>
+        </div>
+      )}
     </div>
   );
 };

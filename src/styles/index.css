@@ -6,6 +6,13 @@ body {
   margin: 0;
 }
 
+snippyly-comment-tool {
+  --snippyly-comment-tool-icon-size: 4rem !important;
+}
+.action-btn-icon{
+  margin-top: 1rem;
+}
+
 .gjs-one-bg {
   background-color: #111 !important;
 }

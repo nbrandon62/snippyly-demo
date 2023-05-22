@@ -24,7 +24,6 @@ const InlineEdit = ({ value, setValue, handleLogout }) => {
     inputElement.current.focus();
   };
 
-
   return (
     <div className='flex'>
       <input
@@ -37,10 +36,12 @@ const InlineEdit = ({ value, setValue, handleLogout }) => {
         onKeyDown={onKeyDown}
         onBlur={onBlur}
       />
-        <button className='mt-2' onClick={focusInput}>
-          <img src={editIcon} alt='edit title icon' className='h-6 mx-4' />
-        </button>
-        <button className='text-white' onClick={handleLogout}>Logout</button>
+      <button className='mt-2' onClick={focusInput}>
+        <img src={editIcon} alt='edit title icon' className='h-6 mx-4' />
+      </button>
+      <button className='text-white' onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 };

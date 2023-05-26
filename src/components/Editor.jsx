@@ -25,11 +25,11 @@ export const Editor = () => {
       },
       deviceManager: {
         devices: [
-          {
-            id: 'desktop',
-            name: 'Desktop',
-            width: '100%',
-          },
+          // {
+          //   id: 'desktop',
+          //   name: 'Desktop',
+          //   width: '100%',
+          // },
           {
             id: 'tablet',
             name: 'Tablet',
